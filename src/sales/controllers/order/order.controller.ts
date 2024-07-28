@@ -30,10 +30,14 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from './../../../auth/guards/jwt-auth.guard';
+import { RolesGuard } from './../../../auth/guards/roles.guard';
+import { HasRole } from './../../../auth/decorators/roles.decorator';
+import { Role } from './../../../users/models/user.entity';
 
 @ApiTags('Orders')
 @ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+@HasRole([Role.AGENT, Role.CUSTOMER])
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('/api/orders')
 export class OrderController {
   constructor(private orderService: OrderService) {}

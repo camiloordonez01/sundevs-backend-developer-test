@@ -7,6 +7,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+export enum Role {
+  ADMIN = 'admin',
+  AGENT = 'agent',
+  CUSTOMER = 'customer',
+  GHOST = 'ghost',
+}
+
 @Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn({ type: 'bigint' })
@@ -44,6 +51,15 @@ export class User {
     nullable: false,
   })
   password: string;
+
+  @Column({
+    name: 'role',
+    type: 'enum',
+    enum: Role,
+    default: Role.GHOST,
+    nullable: true,
+  })
+  role: Role;
 
   @CreateDateColumn({
     name: 'created_at',
