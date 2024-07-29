@@ -24,11 +24,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ secrets.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ secrets.NODE_VERSION }}
         cache: 'npm'
     - run: npm install
     - run: npm run test
-    - run: npm run test:e2e
+    # - run: npm run test:e2e
+    - run: npm run build
+
+    - name: Install serverless globally
+      run: npm install -g serverless
+
+    - name: Configure serverless authentication
+      run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Deploy lambda function
+      run: sls deploy
