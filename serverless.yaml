@@ -4,8 +4,8 @@ frameworkVersion: "3"
 
 useDotenv: true
 
-plugins:
-  - serverless-offline
+# plugins:
+#   - serverless-offline
 
 provider:
   name: aws
