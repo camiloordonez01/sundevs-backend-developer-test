@@ -31,7 +31,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run test
-    # - run: npm run test:e2e
+    - run: npm run test:e2e
 
     - name: Install nest globally
       run: npm install -g @nestjs/cli
