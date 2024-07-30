@@ -15,12 +15,12 @@ provider:
   stage: dev
   region: us-east-2
   environment: 
-    PORT: ${PORT}
-    JWT_SECRET: ${JWT_SECRET}
-    DB_HOST: ${DB_HOST}
-    DB_PORT: ${DB_PORT}
-    DB_USER: ${DB_USER}
-    DB_PASS: ${DB_PASS}
+    PORT: ${secrets.PORT}
+    JWT_SECRET: ${secrets.JWT_SECRET}
+    DB_HOST: ${secrets.DB_HOST}
+    DB_PORT: ${secrets.DB_PORT}
+    DB_USER: ${secrets.DB_USER}
+    DB_PASS: ${secrets.DB_PASS}
     DB_DATABASE: ${DB_DATABASE}
 
 functions:
