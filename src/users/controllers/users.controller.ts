@@ -55,7 +55,6 @@ export class UsersController {
     @Body() assignRoleDto: AssignRoleDto,
   ): Promise<boolean> {
     const user = await this.usersService.findOneById(userId);
-
     if (!user) {
       throw new NotFoundException();
     }
